@@ -1,0 +1,8 @@
+body {
+    margin: 5px;
+}
+
+#recent-searches {
+    list-style: none;
+    padding-left: 0;
+}
