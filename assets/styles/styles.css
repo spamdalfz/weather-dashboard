@@ -2,7 +2,10 @@ body {
     margin: 5px;
 }
 
+.search-box {
+    padding-left: 60px;
+}
+
 #recent-searches {
     list-style: none;
-    padding-left: 0;
 }
