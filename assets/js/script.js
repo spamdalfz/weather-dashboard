@@ -43,6 +43,12 @@ searchButton.addEventListener("click", function (event) {
             var temperature = (currentWeatherData.main.temp - 273.15) * 9 / 5 + 32;
             temperature = temperature.toFixed(1);
 
+            // Get humidity
+            var humidity = currentWeatherData.main.humidity;
+
+            // Get wind speed (in miles per hour)
+            var windSpeed = (currentWeatherData.wind.speed * 2.23694).toFixed(1);
+
             // Create HTML element for current weather data
             var currentWeatherHtml = `
             <div>
@@ -53,6 +59,8 @@ searchButton.addEventListener("click", function (event) {
                     </div>
                     <div class="current-weather-description">${description}</div>
                     <div class="current-weather-temperature">${temperature} &deg;F</div>
+                    <div class="current-weather-humidity">Humidity: ${humidity}%</div>
+                    <div class="current-weather-windspeed">Wind speed: ${windSpeed} mph</div>
                 </div>
             </div>
         `;
@@ -68,7 +76,6 @@ searchButton.addEventListener("click", function (event) {
             var forecastHeadingHtml = `
         <h2>5 Day Forecast</h2>
         `;
-
 
             // Append HTML element to forecast section
             forecastRow.innerHTML = forecastHeadingHtml;
@@ -89,6 +96,12 @@ searchButton.addEventListener("click", function (event) {
                 var temperature = (forecastEntry.main.temp - 273.15) * 9 / 5 + 32;
                 temperature = temperature.toFixed(1);
 
+                // Get humidity
+                var humidity = forecastEntry.main.humidity;
+
+                // Get wind speed (in miles per hour)
+                var windSpeed = (forecastEntry.wind.speed * 2.23694).toFixed(1);
+
                 // Create HTML element for forecast entry
                 var forecastEntryHtml = `
                             <div class="col-md-2 forecast-entry">
@@ -98,6 +111,8 @@ searchButton.addEventListener("click", function (event) {
                                 </div>
                                 <div class="forecast-description">${description}</div>
                                 <div class="forecast-temperature">${temperature} &deg;F</div>
+                                <div class="forecast-humidity">Humidity: ${humidity}%</div>
+                                <div class="forecast-windspeed">Wind speed: ${windSpeed} mph</div>
                             </div>
                         `;
                 // Append HTML element to forecast section
