@@ -1,4 +1,21 @@
+// Save the search to local storage
+function saveSearch(cityName) {
+    var searches = JSON.parse(localStorage.getItem("recentSearches")) || [];
+    searches.unshift(cityName);
+    searches = searches.slice(0, 5);
+    localStorage.setItem("recentSearches", JSON.stringify(searches));
+}
 
+// Display the recent searches in the HTML
+function displayRecentSearches() {
+    var recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
+    var recentSearchesHtml = recentSearches
+        .map(function (search) {
+            return "<ul>" + search + "</ul>";
+        })
+        .join("");
+    document.querySelector("#recent-searches").innerHTML = recentSearchesHtml;
+}
 var searchButton = document.querySelector("#search-button");
 
 // Add event listener for search button
@@ -8,6 +25,9 @@ searchButton.addEventListener("click", function (event) {
     // Get city name input
     var cityName = document.querySelector("#cityName").value;
 
+    // Save the search to local storage
+    saveSearch(cityName);
+    displayRecentSearches()
     // Clear search bar
     document.querySelector("#cityName").value = "";
 
@@ -77,6 +97,7 @@ searchButton.addEventListener("click", function (event) {
         <h2>5 Day Forecast</h2>
         `;
 
+
             // Append HTML element to forecast section
             forecastRow.innerHTML = forecastHeadingHtml;
             // Loop through forecast data for each day and create HTML elements for each day
@@ -120,4 +141,4 @@ searchButton.addEventListener("click", function (event) {
             }
         })
 });
-
+displayRecentSearches()

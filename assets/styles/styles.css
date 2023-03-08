@@ -1,6 +1,7 @@
 body {
     background-color: rgb(154, 156, 165);
     position: relative;
+    font-family: 'Times New Roman', Times, serif
 }
 
 .row {
@@ -10,17 +11,19 @@ body {
 
 }
 
+.search-box {
+    margin-left: 33px;
+}
 
 .recent-searches-panel {
-    padding: 10px;
-    margin-top: 25px;
+    padding-top: 50px;
 }
 
 
 #current-weather {
     position: absolute;
     top: 100px;
-    right: 920px;
+    right: 875px;
 }
 
 #forecast {
@@ -28,4 +31,11 @@ body {
     margin-top: 75px;
     margin-right: -700px;
     justify-content: center;
+}
+
+#recent-searches {
+    font-size: 150%;
+    display: flex;
+    flex-direction: column;
+
 }
