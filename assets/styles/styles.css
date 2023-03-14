@@ -1,41 +1,85 @@
-body {
-    background-color: rgb(154, 156, 165);
-    position: relative;
-    font-family: 'Times New Roman', Times, serif
+/* Center the header */
+.header {
+    text-align: center;
 }
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: -300px;
-
-}
-
+/* Style the search box */
 .search-box {
-    margin-left: 33px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
 }
 
+/* Style the search button */
+#search-button {
+    margin-top: 10px;
+}
+
+/* Style the recent searches panel */
 .recent-searches-panel {
-    padding-top: 50px;
+    margin-top: 20px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
 }
 
-
-#current-weather {
-    position: absolute;
-    top: 100px;
-    right: 875px;
-}
-
-#forecast {
-    display: flex;
-    margin-top: 75px;
-    margin-right: -700px;
-    justify-content: center;
-}
-
+/* Style the recent searches list */
 #recent-searches {
-    font-size: 150%;
-    display: flex;
-    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
 
+/* Style the recent searches links */
+.recent-search {
+    display: block;
+    margin-bottom: 5px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.recent-search:hover {
+    text-decoration: underline;
+}
+
+/* Style the current weather section */
+#current-weather {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+/* Style the forecast section */
+#forecast {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+/* Style the forecast entries */
+.forecast-entry {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+/* Style the forecast section heading */
+#forecast h2 {
+    margin-top: 0;
+}
+
+/* Style the weather icon */
+.current-weather-icon img,
+.forecast-icon img {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+@media (max-width: 767px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
 }

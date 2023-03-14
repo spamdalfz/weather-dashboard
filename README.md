@@ -7,7 +7,7 @@ Weather Dashboard that will display current and future conditions for a searched
 [Weather Dashboard](https://spamdalfz.github.io/weather-dashboard/)
 
 ## Usage
-- Gather weather information for multiple cities for things like planning a trip.
+- Gather weather information for multiple cities for things like planning a trip or vacation.
 
 ## Screenshot
 ![Alt text](/assets/images/screenshot.JPG)

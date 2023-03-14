@@ -1,33 +1,40 @@
 // Save the search to local storage
 function saveSearch(cityName) {
     var searches = JSON.parse(localStorage.getItem("recentSearches")) || [];
+
+    // Remove duplicates
+    searches = searches.filter(function (search) {
+        return search.toLowerCase() !== cityName.toLowerCase();
+    });
+
+    // Add the new search at the beginning of the list
     searches.unshift(cityName);
-    searches = searches.slice(0, 5);
+
+    // Limit the list to 6 items
+    searches = searches.slice(0, 6);
+
+    // Save the updated list to local storage
     localStorage.setItem("recentSearches", JSON.stringify(searches));
 }
 
 // Display the recent searches in the HTML
 function displayRecentSearches() {
     var recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
+
+    // turn recent searches into links
     var recentSearchesHtml = recentSearches
         .map(function (search) {
-            return "<ul>" + search + "</ul>";
+            return `<a href="#" class="recent-search">${search}</a>`;
         })
         .join("");
+
     document.querySelector("#recent-searches").innerHTML = recentSearchesHtml;
 }
-var searchButton = document.querySelector("#search-button");
-
-// Add event listener for search button
-searchButton.addEventListener("click", function (event) {
-    event.preventDefault();
-
-    // Get city name input
-    var cityName = document.querySelector("#cityName").value;
-
+// Perform the search
+function performSearch(cityName) {
     // Save the search to local storage
     saveSearch(cityName);
-    displayRecentSearches()
+
     // Clear search bar
     document.querySelector("#cityName").value = "";
 
@@ -97,9 +104,9 @@ searchButton.addEventListener("click", function (event) {
         <h2>5 Day Forecast</h2>
         `;
 
-
             // Append HTML element to forecast section
             forecastRow.innerHTML = forecastHeadingHtml;
+
             // Loop through forecast data for each day and create HTML elements for each day
             for (var i = 0; i < 5; i++) {
                 var forecastEntry = forecastData.list[i * 8]; // Get the forecast for noon of the day
@@ -139,6 +146,50 @@ searchButton.addEventListener("click", function (event) {
                 // Append HTML element to forecast section
                 forecastRow.innerHTML += forecastEntryHtml;
             }
-        })
+        });
+}
+// Add event listener for search button
+var searchButton = document.querySelector("#search-button");
+searchButton.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    // Get city name input
+    var cityName = document.querySelector("#cityName").value;
+    cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
+
+    // Validate input
+    if (cityName.trim() === "") {
+        alert("Please enter a city name.");
+        return;
+    }
+
+    // Save the search to local storage
+    saveSearch(cityName);
+
+    // Display recent searches
+    displayRecentSearches();
+
+    // Clear search bar
+    document.querySelector("#cityName").value = "";
+
+    // Perform the search
+    performSearch(cityName);
 });
-displayRecentSearches()
+// Add event listener for recent search links
+var recentSearches = document.querySelector("#recent-searches");
+recentSearches.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    if (event.target.classList.contains("recent-search")) {
+        // Get the city name from the link text
+        var cityName = event.target.textContent;
+
+        // Perform the search
+        performSearch(cityName);
+
+        // Clear search bar
+        document.querySelector("#cityName").value = "";
+    }
+});
+
+displayRecentSearches();
